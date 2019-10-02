@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2700C6172344348300816B4D /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2700C6162344348300816B4D /* RecipeViewController.swift */; };
+		2700C6192344446800816B4D /* RecipePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2700C6182344446800816B4D /* RecipePreviewViewController.swift */; };
 		27223BDF234325A90002756D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27223BDE234325A90002756D /* AppDelegate.swift */; };
 		27223BE1234325A90002756D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27223BE0234325A90002756D /* SceneDelegate.swift */; };
 		27223BE3234325A90002756D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27223BE2234325A90002756D /* ViewController.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		2700C6162344348300816B4D /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
+		2700C6182344446800816B4D /* RecipePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipePreviewViewController.swift; sourceTree = "<group>"; };
 		27223BDB234325A90002756D /* Recipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27223BDE234325A90002756D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27223BE0234325A90002756D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				2700C6162344348300816B4D /* RecipeViewController.swift */,
+				2700C6182344446800816B4D /* RecipePreviewViewController.swift */,
 			);
 			path = Recipe;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				27223BE3234325A90002756D /* ViewController.swift in Sources */,
 				27223BDF234325A90002756D /* AppDelegate.swift in Sources */,
 				27223BF9234327CD0002756D /* RecipesViewController.swift in Sources */,
+				2700C6192344446800816B4D /* RecipePreviewViewController.swift in Sources */,
 				2766127C23432A0100DFB87E /* RecipeCell.swift in Sources */,
 				2766127F23432B2900DFB87E /* UILabel+Extensions.swift in Sources */,
 				27223BF6234327070002756D /* Ingredient.swift in Sources */,

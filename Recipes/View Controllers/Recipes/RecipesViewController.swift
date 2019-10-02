@@ -68,6 +68,7 @@ class RecipesViewController: UITableViewController {
     // MARK: - Context Menus
 
     private func makePhotoPreview(for configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+
         guard let index = recipes.firstIndex(where: { $0.id == configuration.identifier as! NSUUID }) else {
             return nil
         }
@@ -79,6 +80,7 @@ class RecipesViewController: UITableViewController {
         let preview = UITargetedPreview(view: cell.highlightPreview)
 
         return preview
+
     }
 
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
@@ -87,7 +89,7 @@ class RecipesViewController: UITableViewController {
 
         let configuration = UIContextMenuConfiguration(identifier: recipe.id, previewProvider: {
 
-            return RecipeViewController(recipe: recipe)
+            return RecipePreviewViewController(photo: recipe.photo)
 
         }, actionProvider: { _ in
 
@@ -95,13 +97,17 @@ class RecipesViewController: UITableViewController {
                 print("Share")
             }
 
+            let saveIngredients = UIAction(title: "Add to Shopping List", image: UIImage(systemName: "plus")) { _ in
+                print("Add ingredients")
+            }
+
             let lists = ["Favorites", "Deserts"].map {
                 UIAction(title: $0, handler: { _ in })
             }
 
-            let save = UIMenu(title: "Save to list...", image: UIImage(systemName: "heart"), children: lists)
+            let save = UIMenu(title: "Save Recipe...", image: UIImage(systemName: "heart"), children: lists)
 
-            let menu = UIMenu(title: "", children: [save, share])
+            let menu = UIMenu(title: "", children: [saveIngredients, save, share])
             return menu
 
         })
@@ -120,9 +126,15 @@ class RecipesViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
 
+        guard let recipe = recipes.first(where: { $0.id == configuration.identifier as! NSUUID }) else {
+            return
+        }
+
+        let viewController = RecipeViewController(recipe: recipe)
+
         animator.addCompletion { [weak self] in
 
-            guard let self = self, let viewController = animator.previewViewController else {
+            guard let self = self else {
                 return
             }
 

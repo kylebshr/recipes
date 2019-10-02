@@ -22,5 +22,5 @@ struct Recipe {
 }
 
 extension Recipe {
-    var photo: UIImage? { UIImage(named: photoName) }
+    var photo: UIImage { UIImage(named: photoName)! }
 }

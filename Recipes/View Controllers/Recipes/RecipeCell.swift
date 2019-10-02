@@ -12,20 +12,32 @@ private let formatter = MeasurementFormatter()
 
 class RecipeCell: UITableViewCell {
 
-    private let titleLabel = UILabel(font: .boldSystemFont(ofSize: 20))
-    private let ingregientCountLabel = UILabel(font: .boldSystemFont(ofSize: 13))
-    private let durationLabel = UILabel(font: .boldSystemFont(ofSize: 13))
+    private let titleLabel = UILabel(font: .preferredFont(forTextStyle: .headline))
+    private let ingregientCountLabel = UILabel(font: .preferredFont(forTextStyle: .callout))
+    private let durationLabel = UILabel(font: .preferredFont(forTextStyle: .callout))
+    private let interpunctView = UILabel(font: .preferredFont(forTextStyle: .callout))
     private let photoView = UIImageView()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
+        let numberFormatter = NumberFormatter()
+        numberFormatter.generatesDecimalNumbers = false
+
+        formatter.unitOptions = .naturalScale
+        formatter.numberFormatter = numberFormatter
+
         photoView.backgroundColor = .systemGray5
         photoView.layer.masksToBounds = true
         photoView.layer.cornerRadius = 4
+        photoView.contentMode = .scaleAspectFill
+        photoView.setContentCompressionResistancePriority(.defaultLow - 1, for: .horizontal)
+        photoView.setContentCompressionResistancePriority(.defaultLow - 1, for: .vertical)
 
-        let calloutStack = UIStackView(arrangedSubviews: [ingregientCountLabel, durationLabel])
-        calloutStack.axis = .vertical
+        interpunctView.text = "·"
+
+        let calloutStack = UIStackView(arrangedSubviews: [ingregientCountLabel, interpunctView, durationLabel])
+        calloutStack.spacing = 4
 
         let labelStack = UIStackView(arrangedSubviews: [titleLabel, calloutStack])
         labelStack.alignment = .leading
@@ -58,9 +70,9 @@ class RecipeCell: UITableViewCell {
     func display(recipe: Recipe) {
 
         titleLabel.text = recipe.name
-        ingregientCountLabel.text = "\(recipe.indredients.count) Ingredient"
+        ingregientCountLabel.text = "\(recipe.indredients.count) Ingredients"
         durationLabel.text = formatter.string(from: recipe.prepTime + recipe.cookTime)
-        photoView.image = recipe.photoName.first.flatMap { UIImage(named: $0) }
+        photoView.image = recipe.photo
 
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Recipe {
 
@@ -14,6 +15,10 @@ struct Recipe {
     let prepTime: Measurement<UnitDuration>
     let cookTime: Measurement<UnitDuration>
     let indredients: [Ingredient]
-    let photoName: [String]
+    let photoName: String
 
+}
+
+extension Recipe {
+    var photo: UIImage? { UIImage(named: photoName) }
 }

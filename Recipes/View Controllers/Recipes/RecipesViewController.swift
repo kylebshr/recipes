@@ -64,4 +64,70 @@ class RecipesViewController: UITableViewController {
         show(viewController, sender: self)
 
     }
+
+    // MARK: - Context Menus
+
+    private func makePhotoPreview(for configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        guard let index = recipes.firstIndex(where: { $0.id == configuration.identifier as! NSUUID }) else {
+            return nil
+        }
+
+        guard let cell = tableView.cellForRow(at: IndexPath(item: index, section: 0)) as? RecipeCell else {
+            return nil
+        }
+
+        let preview = UITargetedPreview(view: cell.highlightPreview)
+
+        return preview
+    }
+
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+
+        let recipe = recipes[indexPath.row]
+
+        let configuration = UIContextMenuConfiguration(identifier: recipe.id, previewProvider: {
+
+            return RecipeViewController(recipe: recipe)
+
+        }, actionProvider: { _ in
+
+            let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+                print("Share")
+            }
+
+            let lists = ["Favorites", "Deserts"].map {
+                UIAction(title: $0, handler: { _ in })
+            }
+
+            let save = UIMenu(title: "Save to list...", image: UIImage(systemName: "heart"), children: lists)
+
+            let menu = UIMenu(title: "", children: [save, share])
+            return menu
+
+        })
+
+        return configuration
+
+    }
+
+    override func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        return makePhotoPreview(for: configuration)
+    }
+
+    override func tableView(_ tableView: UITableView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        return makePhotoPreview(for: configuration)
+    }
+
+    override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+
+        animator.addCompletion { [weak self] in
+
+            guard let self = self, let viewController = animator.previewViewController else {
+                return
+            }
+
+            self.show(viewController, sender: self)
+
+        }
+    }
 }

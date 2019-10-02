@@ -11,6 +11,8 @@ import UIKit
 
 struct Recipe {
 
+    let id: NSUUID = NSUUID()
+
     let name: String
     let prepTime: Measurement<UnitDuration>
     let cookTime: Measurement<UnitDuration>

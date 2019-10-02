@@ -12,6 +12,10 @@ private let formatter = MeasurementFormatter()
 
 class RecipeCell: UITableViewCell {
 
+    var highlightPreview: UIView {
+        photoView
+    }
+
     private let titleLabel = UILabel(font: .preferredFont(forTextStyle: .headline))
     private let ingregientCountLabel = UILabel(font: .preferredFont(forTextStyle: .callout))
     private let durationLabel = UILabel(font: .preferredFont(forTextStyle: .callout))

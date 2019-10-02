@@ -46,7 +46,7 @@ class RecipeCell: UITableViewCell {
 
         let horizontalStack = UIStackView(arrangedSubviews: [labelStack, photoView])
         horizontalStack.distribution = .fill
-        horizontalStack.alignment = .fill
+        horizontalStack.alignment = .top
 
         horizontalStack.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(horizontalStack)
@@ -57,6 +57,7 @@ class RecipeCell: UITableViewCell {
             horizontalStack.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
             horizontalStack.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
 
+            photoView.heightAnchor.constraint(equalToConstant: 60),
             photoView.widthAnchor.constraint(equalTo: photoView.heightAnchor),
         ])
 

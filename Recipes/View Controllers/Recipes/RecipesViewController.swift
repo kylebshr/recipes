@@ -34,6 +34,15 @@ class RecipesViewController: UITableViewController {
 
     }
 
+    private func makeRecipeViewController(for indexPath: IndexPath) -> UIViewController {
+
+        let recipe = recipes[indexPath.row]
+        let viewController = RecipeViewController(recipe: recipe)
+
+        return viewController
+
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipes.count
     }
@@ -46,6 +55,13 @@ class RecipesViewController: UITableViewController {
         cell.display(recipe: recipe)
 
         return cell
+
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        let viewController = makeRecipeViewController(for: indexPath)
+        show(viewController, sender: self)
 
     }
 }

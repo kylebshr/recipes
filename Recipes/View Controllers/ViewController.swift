@@ -131,7 +131,7 @@ class ViewController: UIViewController {
 
         addChild(tabBarController)
         view.addSubview(tabBarController.view)
-        tabBarController.view.autoresizingMask = [.flexibleWidth, .flexibleWidth]
+        tabBarController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tabBarController.view.frame = view.bounds
         tabBarController.didMove(toParent: self)
 

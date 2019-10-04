@@ -124,11 +124,16 @@ class ViewController: UIViewController {
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.navigationBar.prefersLargeTitles = true
 
-        addChild(navigationController)
-        view.addSubview(navigationController.view)
-        navigationController.view.autoresizingMask = [.flexibleWidth, .flexibleWidth]
-        navigationController.view.frame = view.bounds
-        navigationController.didMove(toParent: self)
+        let mapViewController = MapViewController()
+
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [navigationController, mapViewController]
+
+        addChild(tabBarController)
+        view.addSubview(tabBarController.view)
+        tabBarController.view.autoresizingMask = [.flexibleWidth, .flexibleWidth]
+        tabBarController.view.frame = view.bounds
+        tabBarController.didMove(toParent: self)
 
     }
 }

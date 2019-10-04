@@ -17,6 +17,9 @@ class RecipesViewController: UITableViewController {
         self.recipes = recipes
 
         super.init(style: .plain)
+
+        tabBarItem = UITabBarItem(title: "Recipes", image: UIImage(systemName: "book"), selectedImage: nil)
+
     }
 
     @available(*, unavailable)

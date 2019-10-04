@@ -30,7 +30,7 @@ class RecipesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Recipes"
+        navigationItem.title = "Suggested Recipes"
 
         tableView.estimatedRowHeight = 100
         tableView.register(RecipeCell.self, forCellReuseIdentifier: "identifier")
@@ -100,8 +100,14 @@ class RecipesViewController: UITableViewController {
                 print("Share")
             }
 
+            let shareMenu = UIMenu(title: "", options: .displayInline, children: [share])
+
             let saveIngredients = UIAction(title: "Add to Shopping List", image: UIImage(systemName: "plus")) { _ in
                 print("Add ingredients")
+            }
+
+            let dislike = UIAction(title: "Dislike", image: UIImage(systemName: "hand.thumbsdown"), attributes: .destructive) { _ in
+                print("Dislike")
             }
 
             let lists = ["Favorites", "Deserts"].map {
@@ -110,7 +116,7 @@ class RecipesViewController: UITableViewController {
 
             let save = UIMenu(title: "Save Recipe...", image: UIImage(systemName: "heart"), children: lists)
 
-            let menu = UIMenu(title: "", children: [saveIngredients, save, share])
+            let menu = UIMenu(title: "", children: [saveIngredients, save, dislike, shareMenu])
             return menu
 
         })

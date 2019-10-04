@@ -35,15 +35,17 @@ class RecipeViewController: UITableViewController {
 
     }
 
-    @objc private func showMenu() {
+    @objc private func showMenu(sender: UIBarButtonItem?) {
 
         let addIngredients = UIAlertAction(title: "Add to Shopping List", style: .default, handler: nil)
         let save = UIAlertAction(title: "Save Recipe...", style: .default, handler: nil)
         let share = UIAlertAction(title: "Share", style: .default, handler: nil)
+        let dislike = UIAlertAction(title: "Dislike", style: .destructive, handler: nil)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        [addIngredients, save, share, cancel].forEach(actionSheet.addAction)
+        actionSheet.popoverPresentationController?.barButtonItem = sender
+        [addIngredients, save, share, dislike, cancel].forEach(actionSheet.addAction)
 
         present(actionSheet, animated: true)
 

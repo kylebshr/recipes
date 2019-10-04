@@ -53,11 +53,17 @@ class MapViewController: UIViewController {
         let visibleAnchor = locationView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         let hiddenAnchor = locationView.topAnchor.constraint(equalTo: view.bottomAnchor)
 
+        let widthOrTrailingAnchor: NSLayoutConstraint
+        if traitCollection.userInterfaceIdiom == .pad {
+            widthOrTrailingAnchor = locationView.widthAnchor.constraint(equalToConstant: 300)
+        } else {
+            widthOrTrailingAnchor = locationView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
+        }
+
         NSLayoutConstraint.activate([
 
-            hiddenAnchor,
+            hiddenAnchor, widthOrTrailingAnchor,
             locationView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            locationView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
 
         ])
 

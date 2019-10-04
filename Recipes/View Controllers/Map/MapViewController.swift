@@ -32,14 +32,11 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        mapView.delegate = self
-
-        let office = CLLocationCoordinate2D(latitude: 37.776545, longitude: -122.391885)
-        let region = MKCoordinateRegion(center: office, latitudinalMeters: 1000, longitudinalMeters: 1000)
+        let office = Location()
+        let region = MKCoordinateRegion(center: office.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
         mapView.setRegion(region, animated: false)
-
-        let location = Location(coordinate: office)
-        mapView.addAnnotation(location)
+        mapView.addAnnotation(office)
+        mapView.delegate = self
 
     }
 
@@ -77,16 +74,22 @@ extension MapViewController: UIContextMenuInteractionDelegate {
 
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, previewForHighlightingMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
 
-        guard let center = interaction.view?.center else { return nil }
+        guard let annotationView = interaction.view as? OfficeAnnotationView else {
+            return nil
+        }
 
-        let view = OfficePreviewView(image: UIImage(named: "office")!)
+        guard let location = annotationView.annotation as? Location else {
+            return nil
+        }
 
-        let target = UIPreviewTarget(container: mapView, center: center)
+        let preview = OfficePreviewView(image: location.photo)
+
+        let target = UIPreviewTarget(container: mapView, center: annotationView.center)
 
         let parameter = UIPreviewParameters()
-        parameter.visiblePath = view.makeVisiblePath()
+        parameter.visiblePath = preview.makeVisiblePath()
 
-        return UITargetedPreview(view: view, parameters: parameter, target: target)
+        return UITargetedPreview(view: preview, parameters: parameter, target: target)
     }
 
 }

@@ -10,10 +10,9 @@ import MapKit
 
 class Location: NSObject, MKAnnotation {
 
-    let title: String? = "Lyft"
-    let coordinate: CLLocationCoordinate2D
+    let title: String? = "Lyft HQ"
+    let subtitle: String? = "185 Berry St."
+    let coordinate = CLLocationCoordinate2D(latitude: 37.776545, longitude: -122.391885)
+    let photo = UIImage(named: "office")!
 
-    init(coordinate: CLLocationCoordinate2D) {
-        self.coordinate = coordinate
-    }
 }

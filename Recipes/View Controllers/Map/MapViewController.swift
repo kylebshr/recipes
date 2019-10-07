@@ -172,7 +172,7 @@ extension MapViewController: UIContextMenuInteractionDelegate {
                 print("Share")
             }
 
-            return UIMenu(title: "", image: nil, identifier: nil, options: [], children: [favorite, share])
+            return UIMenu(title: annotation.title ?? "", image: nil, identifier: nil, options: [], children: [favorite, share])
 
         }
 

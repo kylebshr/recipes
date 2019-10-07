@@ -9,11 +9,11 @@
 import UIKit
 
 private let instructions = """
-    This thing comes fully loaded. AM/FM radio, reclining bucket seats, and... power windows. You're a very talented young man, with your own clever thoughts and ideas. Do you need a manager? Must go faster... go, go, go, go, go! Checkmate... What do they got in there? King Kong?
+Preheat oven to 375º. Prepare vegetables by gently washing, taking care not to bruise. Thinly slice, and season with salt and pepper. Heat a skillet over medium heat, and sear the vegetables and protein. I don't really know how to write a recipe. Following, is some Jeff Ipsum.
 
-    What do they got in there? King Kong? God creates dinosaurs. God destroys dinosaurs. God creates Man. Man destroys God. Man creates Dinosaurs. They're using our own satellites against us. And the clock is ticking. Hey, take a look at the earthlings. Goodbye!
+What do they got in there? King Kong? God creates dinosaurs. God destroys dinosaurs. God creates Man. Man destroys God. Man creates Dinosaurs. They're using our own satellites against us. And the clock is ticking. Hey, take a look at the earthlings. Goodbye!
 
-    Life finds a way. They're using our own satellites against us. And the clock is ticking. You know what? It is beets. I've crashed into a beet truck. Must go faster... go, go, go, go, go! I gave it a cold? I gave it a virus. A computer virus. Is this my espresso machine? Wh-what is-h-how did you get my espresso machine?
+Life finds a way. They're using our own satellites against us. And the clock is ticking. You know what? It is beets. I've crashed into a beet truck. Must go faster... go, go, go, go, go! I gave it a cold? I gave it a virus. A computer virus. Is this my espresso machine? Wh-what is-h-how did you get my espresso machine?
 """
 
 class ViewController: UIViewController {

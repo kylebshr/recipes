@@ -108,12 +108,21 @@ extension RecipesViewController {
     //    - Submenu for those actions
     //    - Inline menu when appropiate
 
+    // 4. Provide a preview view controller
+    //    - Start with detail view controller
+    //    - Walk through `RecipePreviewViewController`
+    //    - Use `previewProvider`
+
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
 
         let lists = ["Favorites", "Deserts"]
         let recipe = recipes[indexPath.row]
 
-        let configuration = UIContextMenuConfiguration(identifier: recipe.menuID, previewProvider: nil, actionProvider: { _ in
+        let configuration = UIContextMenuConfiguration(identifier: recipe.menuID, previewProvider: {
+
+            return RecipePreviewViewController(photo: recipe.photo)
+
+        }, actionProvider: { _ in
 
             let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
                 print("Share \(recipe)")
@@ -171,11 +180,6 @@ extension RecipesViewController {
             }
 
     }
-
-    // 4. Provide a preview view controller
-    //    - Start with detail view controller
-    //    - Walk through `RecipePreviewViewController`
-    //    - Use `previewProvider`
 
     // 5. Polish preview animation
     //    - Discuss UITargetedPreview

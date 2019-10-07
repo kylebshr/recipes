@@ -19,7 +19,7 @@ class RecipesViewController: UITableViewController, UITableViewDragDelegate {
 
         super.init(style: .plain)
 
-        tabBarItem = UITabBarItem(title: "Recipes", image: UIImage(symbol: .book), selectedImage: nil)
+        tabBarItem = UITabBarItem(title: "Recipes", image: UIImage(systemName: "book"), selectedImage: nil)
 
     }
 
@@ -95,85 +95,10 @@ class RecipesViewController: UITableViewController, UITableViewDragDelegate {
 
     // MARK: - Context Menus
 
-    private func makePhotoPreview(for configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+    // 1. Create a configuration with a menu
+    // 2. Improve the menu with submenus
+    // 3. Show detail for preview action
+    // 4. Provide a preview view controller
+    // 5. Improve the preview animation
 
-        guard let index = recipes.index(for: configuration) else {
-            return nil
-        }
-
-        guard let cell = tableView.cellForRow(at: IndexPath(item: index, section: 0)) as? RecipeCell else {
-            return nil
-        }
-
-        let preview = UITargetedPreview(view: cell.highlightPreview)
-
-        return preview
-
-    }
-
-    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-
-        let recipe = recipes[indexPath.row]
-
-        let configuration = UIContextMenuConfiguration(identifier: recipe.menuID, previewProvider: {
-
-            return RecipePreviewViewController(photo: recipe.photo)
-
-        }, actionProvider: { _ in
-
-            let share = UIAction(title: "Share", image: UIImage(symbol: .share)) { _ in
-                print("Share")
-            }
-
-            let shareMenu = UIMenu(title: "", options: .displayInline, children: [share])
-
-            let saveIngredients = UIAction(title: "Add to Shopping List", image: UIImage(symbol: .plus)) { _ in
-                print("Add ingredients")
-            }
-
-            let dislike = UIAction(title: "Dislike", image: UIImage(symbol: .thumbsDown), attributes: .destructive) { _ in
-                print("Dislike")
-            }
-
-            let lists = ["Favorites", "Deserts"].map {
-                UIAction(title: "Save to \($0)", handler: { _ in })
-            }
-
-            let save = UIMenu(title: "Save Recipe...", image: UIImage(symbol: .heart), children: lists)
-
-            let menu = UIMenu(title: "", children: [saveIngredients, save, dislike, shareMenu])
-            return menu
-
-        })
-
-        return configuration
-
-    }
-
-    override func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
-        return makePhotoPreview(for: configuration)
-    }
-
-    override func tableView(_ tableView: UITableView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
-        return makePhotoPreview(for: configuration)
-    }
-
-    override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
-
-        guard let recipe = recipes.item(for: configuration) else {
-            return
-        }
-
-        let viewController = RecipeViewController(recipe: recipe)
-
-        animator.addCompletion { [weak self] in
-
-            guard let self = self else {
-                return
-            }
-
-            self.show(viewController, sender: self)
-
-        }
-    }
 }

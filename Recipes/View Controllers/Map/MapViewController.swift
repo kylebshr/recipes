@@ -165,7 +165,7 @@ extension MapViewController: UIContextMenuInteractionDelegate {
 
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, previewForHighlightingMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
 
-        guard let location = locations.first(where: { $0.isReferenced(by: configuration) }) else {
+        guard let location = locations.item(for: configuration) else {
             return nil
         }
 
@@ -184,7 +184,7 @@ extension MapViewController: UIContextMenuInteractionDelegate {
 
         animator.preferredCommitStyle = .dismiss
 
-        if let location = locations.first(where: { $0.isReferenced(by: configuration) }) {
+        if let location = locations.item(for: configuration) {
             mapView.selectAnnotation(location, animated: false)
         }
 

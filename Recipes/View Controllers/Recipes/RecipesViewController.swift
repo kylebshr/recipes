@@ -72,7 +72,7 @@ class RecipesViewController: UITableViewController {
 
     private func makePhotoPreview(for configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
 
-        guard let index = recipes.firstIndex(where: { $0.menuID == configuration.identifier as! NSString }) else {
+        guard let index = recipes.index(for: configuration) else {
             return nil
         }
 
@@ -135,7 +135,7 @@ class RecipesViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
 
-        guard let recipe = recipes.first(where: { $0.menuID == configuration.identifier as! NSString }) else {
+        guard let recipe = recipes.item(for: configuration) else {
             return
         }
 

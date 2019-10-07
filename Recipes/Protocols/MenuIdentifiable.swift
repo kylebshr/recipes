@@ -26,3 +26,15 @@ extension MenuIdentifiable {
     }
 
 }
+
+extension Array where Element: MenuIdentifiable {
+
+    func item(for configuration: UIContextMenuConfiguration) -> Element? {
+        return first(where: { $0.menuID == configuration.identifier as? NSString })
+    }
+
+    func index(for configuration: UIContextMenuConfiguration) -> Index? {
+        return firstIndex(where: { $0.menuID == configuration.identifier as? NSString })
+    }
+
+}

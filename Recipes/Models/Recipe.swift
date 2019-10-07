@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct Recipe {
+struct Recipe: MenuIdentifiable {
 
     let id: String = UUID().uuidString
     let name: String

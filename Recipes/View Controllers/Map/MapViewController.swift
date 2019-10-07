@@ -149,12 +149,34 @@ extension MapViewController: UIContextMenuInteractionDelegate {
     // 1. Set up an interaction
     //    - Add in viewDidLoad
 
-    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
-        return nil
-    }
-
     // 2. Create a menu configuration
     //    - Check that the interaction is occuring on an annotation
+
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+
+        guard let annotationView = view.hitTest(location, with: nil) as? OfficeAnnotationView else {
+            return nil
+        }
+
+        guard let annotation = annotationView.annotation as? Location else {
+            return nil
+        }
+
+        return UIContextMenuConfiguration(identifier: annotation.menuID, previewProvider: nil) { _ in
+
+            let favorite = UIAction(title: "Favorite", image: UIImage(symbol: .heart)) { _ in
+                print("Favorite")
+            }
+
+            let share = UIAction(title: "Share", image: UIImage(symbol: .share)) { _ in
+                print("Share")
+            }
+
+            return UIMenu(title: "", image: nil, identifier: nil, options: [], children: [favorite, share])
+
+        }
+
+    }
 
     // 3. Create highlight preview
     //    - Custom view not in the hierarchy

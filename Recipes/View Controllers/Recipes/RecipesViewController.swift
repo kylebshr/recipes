@@ -48,6 +48,8 @@ class RecipesViewController: UITableViewController, UITableViewDragDelegate {
 
     }
 
+    // MARK: Table View
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipes.count
     }
@@ -70,7 +72,7 @@ class RecipesViewController: UITableViewController, UITableViewDragDelegate {
 
     }
 
-    // MARK: - Drag and Drop
+    // MARK: Drag and Drop
 
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
 
@@ -92,13 +94,28 @@ class RecipesViewController: UITableViewController, UITableViewDragDelegate {
         ]
 
     }
+}
 
-    // MARK: - Context Menus
+// MARK: - Context Menus
+
+extension RecipesViewController {
 
     // 1. Create a configuration with a menu
+    //    - Actions for sharing, shopping list, dislike
+
     // 2. Improve the menu with submenus
-    // 3. Show detail for preview action
+    //    - Actions for saving to lists
+    //    - Submenu for those actions
+    //    -
+
+    // 3. Show detail on preview action
+
     // 4. Provide a preview view controller
+    //    - Walk through `RecipePreviewViewController`
+    //    - Use `previewProvider`
+
     // 5. Improve the preview animation
+    //    - Discuss UITargetedPreview
+    //    - Add targeted preview for image
 
 }

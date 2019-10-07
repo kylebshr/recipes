@@ -177,7 +177,7 @@ extension RecipesViewController {
     //    - Start using an identifier
     //    - Discuss NSCopying and MenuIdentifiable
     //    - Push detail when selected
-    
+
     override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
         
         guard let recipe = recipes.item(for: configuration) else {

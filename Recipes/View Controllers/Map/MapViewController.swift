@@ -181,6 +181,8 @@ extension MapViewController: UIContextMenuInteractionDelegate {
     // 3. Create highlight preview
     //    - Custom view not in the hierarchy
 
+    // 4. Polish our preview with a custom shape
+
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, previewForHighlightingMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
 
         guard let location = locations.item(for: configuration) else {
@@ -191,11 +193,12 @@ extension MapViewController: UIContextMenuInteractionDelegate {
 
         let target = UIPreviewTarget(container: view, center: interaction.location(in: view))
 
-        return UITargetedPreview(view: preview, parameters: UIPreviewParameters(), target: target)
+        let parameter = UIPreviewParameters()
+        parameter.visiblePath = preview.makeVisiblePath()
+
+        return UITargetedPreview(view: preview, parameters: parameter, target: target)
 
     }
-
-    // 4. Polish our preview with a custom shape
 
     // 5. Polish our animation when tapping on preview
 

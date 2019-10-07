@@ -122,6 +122,33 @@ extension RecipesViewController {
     // 1. Create a configuration with a menu
     //    - Actions for sharing, shopping list, dislike
 
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+
+        let recipe = recipes[indexPath.row]
+
+        let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { _ in
+
+            let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+                print("Share \(recipe)")
+            }
+
+            let saveIngredients = UIAction(title: "Add to Shopping List", image: UIImage(systemName: "plus")) { _ in
+                print("Add ingredients")
+            }
+
+            let dislike = UIAction(title: "Dislike", image: UIImage(systemName: "hand.thumbsdown"), attributes: .destructive) { _ in
+                print("Dislike")
+            }
+
+            let menu = UIMenu(title: "", children: [saveIngredients, dislike, share])
+            return menu
+
+        })
+
+        return configuration
+
+    }
+
     // 2. Improve the menu with submenus
     //    - Actions for saving to lists
     //    - Submenu for those actions

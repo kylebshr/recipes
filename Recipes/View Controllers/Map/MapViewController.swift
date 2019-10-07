@@ -34,9 +34,6 @@ class MapViewController: UIViewController {
 
         setUpMapView()
 
-        let interaction = UIContextMenuInteraction(delegate: self)
-        view.addInteraction(interaction)
-
     }
 
     private func setUpMapView() {
@@ -144,7 +141,7 @@ extension MapViewController: MKMapViewDelegate {
 
 // MARK: - Context Menus
 
-extension MapViewController: UIContextMenuInteractionDelegate {
+extension MapViewController {
 
     // 1. Set up an interaction
     //    - Add in viewDidLoad

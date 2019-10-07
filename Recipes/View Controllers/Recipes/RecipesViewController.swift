@@ -19,7 +19,7 @@ class RecipesViewController: UITableViewController, UITableViewDragDelegate {
 
         super.init(style: .plain)
 
-        tabBarItem = UITabBarItem(title: "Recipes", image: UIImage(systemName: "book"), selectedImage: nil)
+        tabBarItem = UITabBarItem(title: "Recipes", image: UIImage(symbol: .book), selectedImage: nil)
 
     }
 
@@ -121,25 +121,25 @@ class RecipesViewController: UITableViewController, UITableViewDragDelegate {
 
         }, actionProvider: { _ in
 
-            let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+            let share = UIAction(title: "Share", image: UIImage(symbol: .share)) { _ in
                 print("Share")
             }
 
             let shareMenu = UIMenu(title: "", options: .displayInline, children: [share])
 
-            let saveIngredients = UIAction(title: "Add to Shopping List", image: UIImage(systemName: "plus")) { _ in
+            let saveIngredients = UIAction(title: "Add to Shopping List", image: UIImage(symbol: .plus)) { _ in
                 print("Add ingredients")
             }
 
-            let dislike = UIAction(title: "Dislike", image: UIImage(systemName: "hand.thumbsdown"), attributes: .destructive) { _ in
+            let dislike = UIAction(title: "Dislike", image: UIImage(symbol: .thumbsDown), attributes: .destructive) { _ in
                 print("Dislike")
             }
 
             let lists = ["Favorites", "Deserts"].map {
-                UIAction(title: $0, handler: { _ in })
+                UIAction(title: "Save to \($0)", handler: { _ in })
             }
 
-            let save = UIMenu(title: "Save Recipe...", image: UIImage(systemName: "heart"), children: lists)
+            let save = UIMenu(title: "Save Recipe...", image: UIImage(symbol: .heart), children: lists)
 
             let menu = UIMenu(title: "", children: [saveIngredients, save, dislike, shareMenu])
             return menu

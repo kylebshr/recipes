@@ -20,7 +20,7 @@ class MapViewController: UIViewController {
     override init(nibName: String?, bundle: Bundle?) {
         super.init(nibName: nibName, bundle: bundle)
 
-        tabBarItem = UITabBarItem(title: "Map", image: UIImage(systemName: "map"), selectedImage: nil)
+        tabBarItem = UITabBarItem(title: "Map", image: UIImage(symbol: .map), selectedImage: nil)
 
     }
 

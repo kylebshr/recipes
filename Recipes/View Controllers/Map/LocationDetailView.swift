@@ -47,7 +47,7 @@ class LocationDetailView: UIView {
         stackView.setCustomSpacing(15, after: subtitleLabel)
 
         let closeButton = UIButton(type: .system)
-        closeButton.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+        closeButton.setImage(UIImage(symbol: .close), for: .normal)
         closeButton.addTarget(self, action: #selector(handleCloseTap), for: .primaryActionTriggered)
         closeButton.translatesAutoresizingMaskIntoConstraints = false
 

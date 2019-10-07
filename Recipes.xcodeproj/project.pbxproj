@@ -19,6 +19,7 @@
 		27223BF4234327030002756D /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27223BF3234327030002756D /* Recipe.swift */; };
 		27223BF6234327070002756D /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27223BF5234327070002756D /* Ingredient.swift */; };
 		27223BF9234327CD0002756D /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27223BF8234327CD0002756D /* RecipesViewController.swift */; };
+		27282EB2234BC32C009135EE /* UIImage+Symbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27282EB1234BC32C009135EE /* UIImage+Symbols.swift */; };
 		27535E7023445BBE00B3036B /* FullBleedPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27535E6F23445BBE00B3036B /* FullBleedPhotoCell.swift */; };
 		27535E7223445FFC00B3036B /* RecipeDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27535E7123445FFB00B3036B /* RecipeDetailCell.swift */; };
 		275F32C02346E7F1003C0A77 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275F32BF2346E7F1003C0A77 /* MapViewController.swift */; };
@@ -44,6 +45,7 @@
 		27223BF3234327030002756D /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		27223BF5234327070002756D /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		27223BF8234327CD0002756D /* RecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewController.swift; sourceTree = "<group>"; };
+		27282EB1234BC32C009135EE /* UIImage+Symbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Symbols.swift"; sourceTree = "<group>"; };
 		27535E6F23445BBE00B3036B /* FullBleedPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullBleedPhotoCell.swift; sourceTree = "<group>"; };
 		27535E7123445FFB00B3036B /* RecipeDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailCell.swift; sourceTree = "<group>"; };
 		275F32BF2346E7F1003C0A77 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				2766127E23432B2900DFB87E /* UILabel+Extensions.swift */,
+				27282EB1234BC32C009135EE /* UIImage+Symbols.swift */,
 			);
 			path = "UIKit Extensions";
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				2700C6192344446800816B4D /* RecipePreviewViewController.swift in Sources */,
 				2713A4022347BFA60027CD82 /* LocationDetailView.swift in Sources */,
 				27535E7223445FFC00B3036B /* RecipeDetailCell.swift in Sources */,
+				27282EB2234BC32C009135EE /* UIImage+Symbols.swift in Sources */,
 				2766127C23432A0100DFB87E /* RecipeCell.swift in Sources */,
 				275F32C22346E997003C0A77 /* Location.swift in Sources */,
 				275F32C02346E7F1003C0A77 /* MapViewController.swift in Sources */,

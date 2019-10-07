@@ -31,7 +31,7 @@ class RecipeViewController: UITableViewController {
 
         navigationItem.title = recipe.name
         navigationItem.largeTitleDisplayMode = .never
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle.fill"), style: .plain, target: self, action: #selector(showMenu))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(symbol: .ellipsis), style: .plain, target: self, action: #selector(showMenu))
 
     }
 

@@ -113,7 +113,7 @@ extension RecipesViewController {
         let lists = ["Favorites", "Deserts"]
         let recipe = recipes[indexPath.row]
 
-        let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { _ in
+        let configuration = UIContextMenuConfiguration(identifier: recipe.menuID, previewProvider: nil, actionProvider: { _ in
 
             let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
                 print("Share \(recipe)")
@@ -148,6 +148,29 @@ extension RecipesViewController {
     }
 
     // 3. Show detail on preview action
+    //    - Start using an identifier
+    //    - Discuss NSCopying and MenuIdentifiable
+    //    - Push detail when selected
+
+        override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+
+            guard let recipe = recipes.item(for: configuration) else {
+                return
+            }
+
+            let viewController = RecipeViewController(recipe: recipe)
+
+            animator.addCompletion { [weak self] in
+
+                guard let self = self else {
+                    return
+                }
+
+                self.show(viewController, sender: self)
+
+            }
+
+    }
 
     // 4. Provide a preview view controller
     //    - Start with detail view controller

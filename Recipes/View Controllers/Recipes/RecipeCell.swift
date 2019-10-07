@@ -88,4 +88,8 @@ extension RecipeCell {
 
     // Provide a view for targeted previewing
 
+    var highlightPreview: UIView {
+        photoView
+    }
+
 }

@@ -179,28 +179,53 @@ extension RecipesViewController {
     //    - Push detail when selected
 
     override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
-        
+
         guard let recipe = recipes.item(for: configuration) else {
             return
         }
-        
+
         let viewController = RecipeViewController(recipe: recipe)
-        
+
         animator.addCompletion { [weak self] in
-            
+
             guard let self = self else {
                 return
             }
-            
+
             self.show(viewController, sender: self)
-            
+
         }
 
     }
 
     // 5. Polish preview animation
     //    - Discuss UITargetedPreview
+    //    - Add helper to cell
     //    - Add targeted preview for image
+
+    private func makePhotoPreview(for configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+
+        guard let index = recipes.index(for: configuration) else {
+            return nil
+        }
+
+        guard let cell = tableView.cellForRow(at: IndexPath(item: index, section: 0)) as? RecipeCell else {
+            return nil
+        }
+
+        let preview = UITargetedPreview(view: cell.highlightPreview)
+
+        return preview
+
+    }
+
+    override func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        return makePhotoPreview(for: configuration)
+    }
+
+    override func tableView(_ tableView: UITableView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        return makePhotoPreview(for: configuration)
+    }
 
     // 6. Add drag integration
 

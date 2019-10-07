@@ -80,17 +80,35 @@ class RecipesViewController: UITableViewController, UITableViewDragDelegate {
 
         let instructionsData = recipe.instructions.data(using: .utf8)
         let instructionsProvider = NSItemProvider()
-
+        let instructionsDragItem = UIDragItem(itemProvider: instructionsProvider)
         instructionsProvider.registerDataRepresentation(forTypeIdentifier: kUTTypePlainText as String, visibility: .all) { completion in
             completion(instructionsData, nil)
             return nil
         }
 
+        instructionsDragItem.previewProvider = {
+            let view = UILabel()
+            view.numberOfLines = 8
+            view.frame.size = CGSize(width: 150, height: 150)
+            view.text = recipe.instructions
+            return UIDragPreview(view: view)
+        }
+
         let photoProvider = NSItemProvider(object: recipe.photo)
+        let photoDragItem = UIDragItem(itemProvider: photoProvider)
+        photoDragItem.previewProvider = {
+            let view = UIImageView()
+            view.clipsToBounds = true
+            view.layer.cornerRadius = 8
+            view.frame.size = CGSize(width: 100, height: 100)
+            view.image = recipe.photo
+            view.contentMode = .scaleAspectFill
+            return UIDragPreview(view: view)
+        }
 
         return [
-            UIDragItem(itemProvider: photoProvider),
-            UIDragItem(itemProvider: instructionsProvider),
+            instructionsDragItem,
+            photoDragItem,
         ]
 
     }

@@ -156,8 +156,15 @@ extension MapViewController: UIContextMenuInteractionDelegate {
 
         return UIContextMenuConfiguration(identifier: annotation.menuID, previewProvider: nil) { _ in
 
-            let action = UIAction(title: "Whoa", handler: {_ in})
-            return UIMenu(title: "", image: nil, identifier: nil, options: [], children: [action])
+            let favorite = UIAction(title: "Favorite", image: UIImage(symbol: .heart)) { _ in
+                print("Favorite")
+            }
+
+            let share = UIAction(title: "Share", image: UIImage(symbol: .share)) { _ in
+                print("Share")
+            }
+
+            return UIMenu(title: "", image: nil, identifier: nil, options: [], children: [favorite, share])
 
         }
 

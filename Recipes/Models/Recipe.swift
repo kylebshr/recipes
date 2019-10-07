@@ -11,8 +11,7 @@ import UIKit
 
 struct Recipe {
 
-    let id: NSUUID = NSUUID()
-
+    let id: String = UUID().uuidString
     let name: String
     let prepTime: Measurement<UnitDuration>
     let cookTime: Measurement<UnitDuration>
@@ -22,5 +21,13 @@ struct Recipe {
 }
 
 extension Recipe {
-    var photo: UIImage { UIImage(named: photoName)! }
+
+    var photo: UIImage {
+        UIImage(named: photoName)!
+    }
+
+    var menuID: NSString {
+        NSString(string: id)
+    }
+
 }

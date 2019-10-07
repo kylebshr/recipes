@@ -54,12 +54,11 @@ class OfficePreviewView: UIView {
 
         layoutIfNeeded()
 
-        var path = UIBezierPath(ovalIn: imageView.frame)
+        let circlePath = UIBezierPath(ovalIn: imageView.frame)
+        let dotPath = UIBezierPath(ovalIn: circleView.frame)
+        circlePath.append(dotPath)
 
-        let circlePath = UIBezierPath(ovalIn: circleView.frame)
-        path.append(circlePath)
-
-        return path
+        return circlePath
         
     }
 }

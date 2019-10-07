@@ -10,12 +10,21 @@ import UIKit
 
 class LocationDetailView: UIView {
 
-    init(location: Location) {
+    private let close: () -> Void
+
+    init(location: Location, close: @escaping () -> Void) {
+
+        self.close = close
+
         super.init(frame: .zero)
 
         backgroundColor = .systemBackground
         layer.cornerCurve = .continuous
-        layer.cornerRadius = 20
+        layer.cornerRadius = 10
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.3
+        layer.shadowRadius = 4
+        layer.shadowOffset = .zero
 
         let titleLabel = UILabel(font: .preferredFont(forTextStyle: .headline))
         titleLabel.text = location.title
@@ -32,22 +41,30 @@ class LocationDetailView: UIView {
         let stackView = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel, imageView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.axis = .vertical
         stackView.setCustomSpacing(15, after: subtitleLabel)
 
+        let closeButton = UIButton(type: .system)
+        closeButton.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+        closeButton.addTarget(self, action: #selector(handleCloseTap), for: .primaryActionTriggered)
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+
         addSubview(stackView)
+        addSubview(closeButton)
 
         NSLayoutConstraint.activate([
 
-            stackView.topAnchor.constraint(equalTo: topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            stackView.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 1),
+            bottomAnchor.constraint(equalToSystemSpacingBelow: stackView.bottomAnchor, multiplier: 1),
+            stackView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
+            trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 1),
 
-            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 3.0 / 5)
+            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 3.0 / 5),
+
+            closeButton.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 1),
+            trailingAnchor.constraint(equalToSystemSpacingAfter: closeButton.trailingAnchor, multiplier: 1),
 
         ])
 
@@ -56,6 +73,10 @@ class LocationDetailView: UIView {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    @objc private func handleCloseTap() {
+        close()
     }
 
 }

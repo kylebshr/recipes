@@ -35,7 +35,8 @@ class MapViewController: UIViewController {
         view.addSubview(mapView)
 
         let office = Location()
-        let region = MKCoordinateRegion(center: office.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
+        let coordinate = CLLocationCoordinate2D(latitude: 37.74465653852542, longitude: -122.3926921078639)
+        let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 10000, longitudinalMeters: 10000)
         mapView.setRegion(region, animated: false)
         mapView.addAnnotation(office)
         mapView.delegate = self
@@ -46,7 +47,10 @@ class MapViewController: UIViewController {
 
         currentLocationView?.removeFromSuperview()
 
-        let locationView = LocationDetailView(location: location)
+        let locationView = LocationDetailView(location: location) { [weak self] in
+            self?.mapView.deselectAnnotation(nil, animated: false)
+        }
+
         locationView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(locationView)
 
@@ -79,6 +83,27 @@ class MapViewController: UIViewController {
 
     }
 
+    private func hideDetails() {
+
+        guard let currentLocationView = currentLocationView else {
+            return
+        }
+
+        UIView.animate(withDuration: 0.4, animations: {
+            let translation = CATransform3DMakeTranslation(0, currentLocationView.frame.minY, 0)
+            currentLocationView.layer.transform = translation
+        }, completion: { _ in
+            currentLocationView.removeFromSuperview()
+        })
+
+        self.currentLocationView = nil
+
+    }
+
+    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+        print(mapView.centerCoordinate)
+    }
+
 }
 
 extension MapViewController: MKMapViewDelegate {
@@ -108,15 +133,7 @@ extension MapViewController: MKMapViewDelegate {
 
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
 
-        let animator = UIViewPropertyAnimator.init(duration: 0.3, curve: .easeInOut) {
-            self.currentLocationView?.alpha = 0
-        }
-
-        animator.addCompletion { _ in
-            self.currentLocationView?.removeFromSuperview()
-        }
-
-        animator.startAnimation()
+        hideDetails()
 
     }
 

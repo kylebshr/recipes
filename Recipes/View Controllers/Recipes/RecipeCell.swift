@@ -8,13 +8,19 @@
 
 import UIKit
 
-private let formatter = MeasurementFormatter()
-
 class RecipeCell: UITableViewCell {
 
-    var highlightPreview: UIView {
-        photoView
-    }
+    private static let formatter: MeasurementFormatter = {
+        let formatter = MeasurementFormatter()
+
+        let numberFormatter = NumberFormatter()
+        numberFormatter.generatesDecimalNumbers = false
+
+        formatter.unitOptions = .naturalScale
+        formatter.numberFormatter = numberFormatter
+
+        return formatter
+    }()
 
     private let titleLabel = UILabel(font: .preferredFont(forTextStyle: .headline))
     private let ingregientCountLabel = UILabel(font: .preferredFont(forTextStyle: .callout))
@@ -24,12 +30,6 @@ class RecipeCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
-        let numberFormatter = NumberFormatter()
-        numberFormatter.generatesDecimalNumbers = false
-
-        formatter.unitOptions = .naturalScale
-        formatter.numberFormatter = numberFormatter
 
         photoView.backgroundColor = .systemGray5
         photoView.layer.masksToBounds = true
@@ -76,8 +76,16 @@ class RecipeCell: UITableViewCell {
 
         titleLabel.text = recipe.name
         ingregientCountLabel.text = "\(recipe.indredients.count) Ingredients"
-        durationLabel.text = formatter.string(from: recipe.prepTime + recipe.cookTime)
+        durationLabel.text = Self.formatter.string(from: recipe.prepTime + recipe.cookTime)
         photoView.image = recipe.photo
 
     }
+}
+
+// MARK: - Context Menus
+
+extension RecipeCell {
+
+    // Provide a view for targeted previewing
+
 }

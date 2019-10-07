@@ -106,7 +106,7 @@ extension RecipesViewController {
     // 2. Improve the menu with submenus
     //    - Actions for saving to lists
     //    - Submenu for those actions
-    //    -
+    //    - Inline menu when appropiate
 
     // 3. Show detail on preview action
 
@@ -114,8 +114,10 @@ extension RecipesViewController {
     //    - Walk through `RecipePreviewViewController`
     //    - Use `previewProvider`
 
-    // 5. Improve the preview animation
+    // 5. Polish preview animation
     //    - Discuss UITargetedPreview
     //    - Add targeted preview for image
+
+    // 6. Add drag integration
 
 }

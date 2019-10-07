@@ -142,59 +142,21 @@ extension MapViewController: MKMapViewDelegate {
 
 }
 
+// MARK: - Context Menus
+
 extension MapViewController: UIContextMenuInteractionDelegate {
 
-    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+    // 1. Set up an interaction
+    //    - Add in viewDidLoad
 
-        guard let annotationView = view.hitTest(location, with: nil) as? OfficeAnnotationView else {
-            return nil
-        }
+    // 2. Create a menu configuration
+    //    - Check that the interaction is occuring on an annotation
 
-        guard let annotation = annotationView.annotation as? Location else {
-            return nil
-        }
+    // 3. Create highlight preview
+    //    - Custom view not in the hierarchy
 
-        return UIContextMenuConfiguration(identifier: annotation.menuID, previewProvider: nil) { _ in
+    // 4. Polish our animation when tapping on preview
 
-            let favorite = UIAction(title: "Favorite", image: UIImage(symbol: .heart)) { _ in
-                print("Favorite")
-            }
-
-            let share = UIAction(title: "Share", image: UIImage(symbol: .share)) { _ in
-                print("Share")
-            }
-
-            return UIMenu(title: "", image: nil, identifier: nil, options: [], children: [favorite, share])
-
-        }
-
-    }
-
-    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, previewForHighlightingMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
-
-        guard let location = locations.item(for: configuration) else {
-            return nil
-        }
-
-        let preview = OfficePreviewView(image: location.photo)
-
-        let target = UIPreviewTarget(container: view, center: interaction.location(in: view))
-
-        let parameter = UIPreviewParameters()
-        parameter.visiblePath = preview.makeVisiblePath()
-
-        return UITargetedPreview(view: preview, parameters: parameter, target: target)
-
-    }
-
-    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
-
-        animator.preferredCommitStyle = .dismiss
-
-        if let location = locations.item(for: configuration) {
-            mapView.selectAnnotation(location, animated: false)
-        }
-
-    }
+    // 5. Polish our preview with a custom shape
 
 }

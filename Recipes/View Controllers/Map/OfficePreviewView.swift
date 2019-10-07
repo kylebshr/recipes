@@ -20,14 +20,19 @@ class OfficePreviewView: UIView {
 
         super.init(frame: frame)
 
+        backgroundColor = .clear
+
         addSubview(imageView)
         imageView.image = image
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 40
 
         addSubview(circleView)
         circleView.backgroundColor = #colorLiteral(red: 1, green: 0, blue: 0.7688797712, alpha: 1)
         circleView.translatesAutoresizingMaskIntoConstraints = false
+        circleView.layer.cornerRadius = 6
 
         NSLayoutConstraint.activate([
 

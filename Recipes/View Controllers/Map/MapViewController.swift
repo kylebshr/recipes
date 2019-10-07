@@ -202,4 +202,14 @@ extension MapViewController: UIContextMenuInteractionDelegate {
 
     // 5. Polish our animation when tapping on preview
 
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+
+        animator.preferredCommitStyle = .dismiss
+
+        if let location = locations.item(for: configuration) {
+            mapView.selectAnnotation(location, animated: false)
+        }
+
+    }
+
 }

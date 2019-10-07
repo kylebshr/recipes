@@ -8,8 +8,9 @@
 
 import MapKit
 
-class Location: NSObject, MKAnnotation {
+class Location: NSObject, MKAnnotation, MenuIdentifiable {
 
+    let id: String = UUID().uuidString
     let title: String? = "Lyft HQ"
     let subtitle: String? = "185 Berry St."
     let coordinate = CLLocationCoordinate2D(latitude: 37.776545, longitude: -122.391885)

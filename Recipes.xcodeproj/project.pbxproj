@@ -26,6 +26,7 @@
 		275F32C42346EB22003C0A77 /* OfficeAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275F32C32346EB22003C0A77 /* OfficeAnnotationView.swift */; };
 		2766127C23432A0100DFB87E /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2766127B23432A0100DFB87E /* RecipeCell.swift */; };
 		2766127F23432B2900DFB87E /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2766127E23432B2900DFB87E /* UILabel+Extensions.swift */; };
+		27AE2E57234BA40C00934657 /* MenuIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AE2E56234BA40C00934657 /* MenuIdentifiable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		275F32C32346EB22003C0A77 /* OfficeAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeAnnotationView.swift; sourceTree = "<group>"; };
 		2766127B23432A0100DFB87E /* RecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
 		2766127E23432B2900DFB87E /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
+		27AE2E56234BA40C00934657 /* MenuIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuIdentifiable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 			children = (
 				27223BDE234325A90002756D /* AppDelegate.swift */,
 				27223BE0234325A90002756D /* SceneDelegate.swift */,
+				27AE2E55234BA3FB00934657 /* Protocols */,
 				27223BF7234327B60002756D /* View Controllers */,
 				27223BF2234326FD0002756D /* Models */,
 				2766127D23432B1900DFB87E /* UIKit Extensions */,
@@ -152,6 +155,14 @@
 				2766127E23432B2900DFB87E /* UILabel+Extensions.swift */,
 			);
 			path = "UIKit Extensions";
+			sourceTree = "<group>";
+		};
+		27AE2E55234BA3FB00934657 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				27AE2E56234BA40C00934657 /* MenuIdentifiable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27AE2E57234BA40C00934657 /* MenuIdentifiable.swift in Sources */,
 				27223BE3234325A90002756D /* ViewController.swift in Sources */,
 				27223BDF234325A90002756D /* AppDelegate.swift in Sources */,
 				27223BF9234327CD0002756D /* RecipesViewController.swift in Sources */,

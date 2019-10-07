@@ -13,6 +13,8 @@ class MapViewController: UIViewController {
 
     private let mapView = MKMapView()
 
+    private let locations = [Location()]
+
     private var currentLocationView: UIView?
 
     override init(nibName: String?, bundle: Bundle?) {
@@ -30,16 +32,28 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setUpMapView()
+
+        let interaction = UIContextMenuInteraction(delegate: self)
+        view.addInteraction(interaction)
+
+    }
+
+    private func setUpMapView() {
+
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.frame = view.bounds
-        view.addSubview(mapView)
+        mapView.delegate = self
 
-        let office = Location()
         let coordinate = CLLocationCoordinate2D(latitude: 37.74465653852542, longitude: -122.3926921078639)
         let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 10000, longitudinalMeters: 10000)
         mapView.setRegion(region, animated: false)
-        mapView.addAnnotation(office)
-        mapView.delegate = self
+
+        view.addSubview(mapView)
+
+        for location in locations {
+            mapView.addAnnotation(location)
+        }
 
     }
 
@@ -100,24 +114,13 @@ class MapViewController: UIViewController {
 
     }
 
-    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-        print(mapView.centerCoordinate)
-    }
-
 }
 
 extension MapViewController: MKMapViewDelegate {
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
 
-        let view = OfficeAnnotationView()
-
-        if !view.interactions.contains(where: { $0 is UIContextMenuInteraction }) {
-            let interaction = UIContextMenuInteraction(delegate: self)
-            view.addInteraction(interaction)
-        }
-
-        return view
+        return OfficeAnnotationView()
 
     }
 
@@ -143,7 +146,15 @@ extension MapViewController: UIContextMenuInteractionDelegate {
 
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
 
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+        guard let annotationView = view.hitTest(location, with: nil) as? OfficeAnnotationView else {
+            return nil
+        }
+
+        guard let annotation = annotationView.annotation as? Location else {
+            return nil
+        }
+
+        return UIContextMenuConfiguration(identifier: annotation.menuID, previewProvider: nil) { _ in
 
             let action = UIAction(title: "Whoa", handler: {_ in})
             return UIMenu(title: "", image: nil, identifier: nil, options: [], children: [action])
@@ -154,37 +165,28 @@ extension MapViewController: UIContextMenuInteractionDelegate {
 
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, previewForHighlightingMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
 
-        guard let annotationView = interaction.view as? OfficeAnnotationView else {
-            return nil
-        }
-
-        guard let location = annotationView.annotation as? Location else {
+        guard let location = locations.first(where: { $0.isReferenced(by: configuration) }) else {
             return nil
         }
 
         let preview = OfficePreviewView(image: location.photo)
 
-        let target = UIPreviewTarget(container: mapView, center: annotationView.center)
+        let target = UIPreviewTarget(container: view, center: interaction.location(in: view))
 
         let parameter = UIPreviewParameters()
         parameter.visiblePath = preview.makeVisiblePath()
 
         return UITargetedPreview(view: preview, parameters: parameter, target: target)
+
     }
 
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
 
         animator.preferredCommitStyle = .dismiss
 
-        guard let view = interaction.view as? OfficeAnnotationView else {
-            return
+        if let location = locations.first(where: { $0.isReferenced(by: configuration) }) {
+            mapView.selectAnnotation(location, animated: false)
         }
-
-        guard let location = view.annotation as? Location else {
-            return
-        }
-
-        mapView.selectAnnotation(location, animated: false)
 
     }
 

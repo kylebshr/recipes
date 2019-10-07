@@ -168,25 +168,25 @@ extension RecipesViewController {
     //    - Start using an identifier
     //    - Discuss NSCopying and MenuIdentifiable
     //    - Push detail when selected
-
-        override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
-
-            guard let recipe = recipes.item(for: configuration) else {
+    
+    override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+        
+        guard let recipe = recipes.item(for: configuration) else {
+            return
+        }
+        
+        let viewController = RecipeViewController(recipe: recipe)
+        
+        animator.addCompletion { [weak self] in
+            
+            guard let self = self else {
                 return
             }
-
-            let viewController = RecipeViewController(recipe: recipe)
-
-            animator.addCompletion { [weak self] in
-
-                guard let self = self else {
-                    return
-                }
-
-                self.show(viewController, sender: self)
-
-            }
-
+            
+            self.show(viewController, sender: self)
+            
+        }
+        
     }
 
     // 4. Provide a preview view controller

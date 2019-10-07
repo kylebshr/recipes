@@ -103,8 +103,14 @@ extension RecipesViewController {
     // 1. Create a configuration with a menu
     //    - Actions for sharing, shopping list, dislike
 
+    // 2. Improve the menu with submenus
+    //    - Actions for saving to lists
+    //    - Submenu for those actions
+    //    - Inline menu when appropiate
+
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
 
+        let lists = ["Favorites", "Deserts"]
         let recipe = recipes[indexPath.row]
 
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { _ in
@@ -112,6 +118,8 @@ extension RecipesViewController {
             let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
                 print("Share \(recipe)")
             }
+
+            let shareMenu = UIMenu(title: "", options: .displayInline, children: [share])
 
             let saveIngredients = UIAction(title: "Add to Shopping List", image: UIImage(systemName: "plus")) { _ in
                 print("Add ingredients")
@@ -121,7 +129,16 @@ extension RecipesViewController {
                 print("Dislike")
             }
 
-            let menu = UIMenu(title: "", children: [saveIngredients, dislike, share])
+            let listActions = lists.map {
+                UIAction(title: "Save to \($0)") {
+                    print("Save to list \($0)")
+                }
+            }
+
+            let saveMenuStyle: UIMenu.Options = listActions.count > 2 ? [] : .displayInline
+            let saveMenu = UIMenu(title: "Save Recipe...", image: UIImage(systemName: "heart"), options: saveMenuStyle, children: listActions)
+
+            let menu = UIMenu(title: "", children: [saveIngredients, dislike, saveMenu, shareMenu])
             return menu
 
         })
@@ -130,14 +147,10 @@ extension RecipesViewController {
 
     }
 
-    // 2. Improve the menu with submenus
-    //    - Actions for saving to lists
-    //    - Submenu for those actions
-    //    - Inline menu when appropiate
-
     // 3. Show detail on preview action
 
     // 4. Provide a preview view controller
+    //    - Start with detail view controller
     //    - Walk through `RecipePreviewViewController`
     //    - Use `previewProvider`
 

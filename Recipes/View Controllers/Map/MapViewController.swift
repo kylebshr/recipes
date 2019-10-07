@@ -34,6 +34,9 @@ class MapViewController: UIViewController {
 
         setUpMapView()
 
+        let interaction = UIContextMenuInteraction(delegate: self)
+        view.addInteraction(interaction)
+
     }
 
     private func setUpMapView() {
@@ -141,10 +144,14 @@ extension MapViewController: MKMapViewDelegate {
 
 // MARK: - Context Menus
 
-extension MapViewController {
+extension MapViewController: UIContextMenuInteractionDelegate {
 
     // 1. Set up an interaction
     //    - Add in viewDidLoad
+
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        return nil
+    }
 
     // 2. Create a menu configuration
     //    - Check that the interaction is occuring on an annotation

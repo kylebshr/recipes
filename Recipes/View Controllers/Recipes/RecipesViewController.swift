@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreServices
 
-class RecipesViewController: UITableViewController {
+class RecipesViewController: UITableViewController, UITableViewDragDelegate {
 
     private let recipes: [Recipe]
 
@@ -32,6 +33,7 @@ class RecipesViewController: UITableViewController {
 
         navigationItem.title = "Suggested Recipes"
 
+        tableView.dragDelegate = self
         tableView.estimatedRowHeight = 100
         tableView.register(RecipeCell.self, forCellReuseIdentifier: "identifier")
 
@@ -65,6 +67,29 @@ class RecipesViewController: UITableViewController {
 
         let viewController = makeRecipeViewController(for: indexPath)
         show(viewController, sender: self)
+
+    }
+
+    // MARK: - Drag and Drop
+
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+
+        let recipe = recipes[indexPath.row]
+
+        let instructionsData = recipe.instructions.data(using: .utf8)
+        let instructionsProvider = NSItemProvider()
+
+        instructionsProvider.registerDataRepresentation(forTypeIdentifier: kUTTypePlainText as String, visibility: .all) { completion in
+            completion(instructionsData, nil)
+            return nil
+        }
+
+        let photoProvider = NSItemProvider(object: recipe.photo)
+
+        return [
+            UIDragItem(itemProvider: photoProvider),
+            UIDragItem(itemProvider: instructionsProvider),
+        ]
 
     }
 

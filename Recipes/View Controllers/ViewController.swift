@@ -8,6 +8,14 @@
 
 import UIKit
 
+private let instructions = """
+    This thing comes fully loaded. AM/FM radio, reclining bucket seats, and... power windows. You're a very talented young man, with your own clever thoughts and ideas. Do you need a manager? Must go faster... go, go, go, go, go! Checkmate... What do they got in there? King Kong?
+
+    What do they got in there? King Kong? God creates dinosaurs. God destroys dinosaurs. God creates Man. Man destroys God. Man creates Dinosaurs. They're using our own satellites against us. And the clock is ticking. Hey, take a look at the earthlings. Goodbye!
+
+    Life finds a way. They're using our own satellites against us. And the clock is ticking. You know what? It is beets. I've crashed into a beet truck. Must go faster... go, go, go, go, go! I gave it a cold? I gave it a virus. A computer virus. Is this my espresso machine? Wh-what is-h-how did you get my espresso machine?
+"""
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -19,7 +27,8 @@ class ViewController: UIViewController {
                 prepTime: Measurement(value: 20, unit: .minutes),
                 cookTime: Measurement(value: 25, unit: .minutes),
                 indredients: [.butter, .angelHair, .chicken, .broccoli, .butter, .angelHair, .chicken, .broccoli],
-                photoName: "carne"
+                photoName: "carne",
+                instructions: instructions
             ),
 
             Recipe(
@@ -27,7 +36,8 @@ class ViewController: UIViewController {
                 prepTime: Measurement(value: 10, unit: .minutes),
                 cookTime: Measurement(value: 20, unit: .minutes),
                 indredients: [.butter, .angelHair, .chicken, .broccoli, .butter, .angelHair, .chicken, .broccoli],
-                photoName: "frenchtoast"
+                photoName: "frenchtoast",
+                instructions: instructions
             ),
 
             Recipe(
@@ -35,7 +45,8 @@ class ViewController: UIViewController {
                 prepTime: Measurement(value: 40, unit: .minutes),
                 cookTime: Measurement(value: 8, unit: .minutes),
                 indredients: [.butter, .angelHair, .chicken, .broccoli, .butter, .angelHair, .chicken, .broccoli],
-                photoName: "pasta"
+                photoName: "pasta",
+                instructions: instructions
             ),
 
             Recipe(
@@ -43,7 +54,8 @@ class ViewController: UIViewController {
                 prepTime: Measurement(value: 35, unit: .minutes),
                 cookTime: Measurement(value: 35, unit: .minutes),
                 indredients: [.butter, .angelHair, .chicken, .broccoli, .butter, .angelHair, .chicken, .broccoli],
-                photoName: "pizza"
+                photoName: "pizza",
+                instructions: instructions
             ),
 
             Recipe(
@@ -51,7 +63,8 @@ class ViewController: UIViewController {
                 prepTime: Measurement(value: 40, unit: .minutes),
                 cookTime: Measurement(value: 60, unit: .minutes),
                 indredients: [.butter, .angelHair, .chicken, .broccoli, .butter, .angelHair, .chicken, .broccoli],
-                photoName: "salmon"
+                photoName: "salmon",
+                instructions: instructions
             ),
 
             Recipe(
@@ -59,7 +72,8 @@ class ViewController: UIViewController {
                 prepTime: Measurement(value: 30, unit: .minutes),
                 cookTime: Measurement(value: 25, unit: .minutes),
                 indredients: [.butter, .angelHair, .chicken, .broccoli, .butter, .angelHair, .chicken, .broccoli],
-                photoName: "tacos"
+                photoName: "tacos",
+                instructions: instructions
             ),
 
             Recipe(
@@ -67,7 +81,8 @@ class ViewController: UIViewController {
                 prepTime: Measurement(value: 15, unit: .minutes),
                 cookTime: Measurement(value: 10, unit: .minutes),
                 indredients: [.butter, .angelHair, .chicken, .broccoli, .butter, .angelHair, .chicken, .broccoli],
-                photoName: "toast"
+                photoName: "toast",
+                instructions: instructions
             ),
 
             Recipe(
@@ -75,7 +90,8 @@ class ViewController: UIViewController {
                 prepTime: Measurement(value: 20, unit: .minutes),
                 cookTime: Measurement(value: 10, unit: .minutes),
                 indredients: [.butter, .angelHair, .chicken, .broccoli, .butter, .angelHair, .chicken, .broccoli],
-                photoName: "corn"
+                photoName: "corn",
+                instructions: instructions
             ),
 
             Recipe(
@@ -83,7 +99,8 @@ class ViewController: UIViewController {
                 prepTime: Measurement(value: 30, unit: .minutes),
                 cookTime: Measurement(value: 30, unit: .minutes),
                 indredients: [.butter, .angelHair, .chicken, .broccoli, .butter, .angelHair, .chicken, .broccoli],
-                photoName: "lamb"
+                photoName: "lamb",
+                instructions: instructions
             ),
 
             Recipe(
@@ -91,7 +108,8 @@ class ViewController: UIViewController {
                 prepTime: Measurement(value: 35, unit: .minutes),
                 cookTime: Measurement(value: 0, unit: .minutes),
                 indredients: [.butter, .angelHair, .chicken, .broccoli, .butter, .angelHair, .chicken, .broccoli],
-                photoName: "acai"
+                photoName: "acai",
+                instructions: instructions
             ),
 
             Recipe(
@@ -99,7 +117,8 @@ class ViewController: UIViewController {
                 prepTime: Measurement(value: 10, unit: .minutes),
                 cookTime: Measurement(value: 10, unit: .minutes),
                 indredients: [.butter, .angelHair, .chicken, .broccoli, .butter, .angelHair, .chicken, .broccoli],
-                photoName: "popsicle"
+                photoName: "popsicle",
+                instructions: instructions
             ),
 
             Recipe(
@@ -107,7 +126,8 @@ class ViewController: UIViewController {
                 prepTime: Measurement(value: 25, unit: .minutes),
                 cookTime: Measurement(value: 20, unit: .minutes),
                 indredients: [.butter, .angelHair, .chicken, .broccoli, .butter, .angelHair, .chicken, .broccoli],
-                photoName: "panini"
+                photoName: "panini",
+                instructions: instructions
             ),
 
             Recipe(
@@ -115,7 +135,8 @@ class ViewController: UIViewController {
                 prepTime: Measurement(value: 25, unit: .minutes),
                 cookTime: Measurement(value: 20, unit: .minutes),
                 indredients: [.butter, .angelHair, .chicken, .broccoli, .butter, .angelHair, .chicken, .broccoli],
-                photoName: "pork"
+                photoName: "pork",
+                instructions: instructions
             ),
 
         ]

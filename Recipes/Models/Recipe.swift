@@ -17,6 +17,7 @@ struct Recipe: MenuIdentifiable {
     let cookTime: Measurement<UnitDuration>
     let indredients: [Ingredient]
     let photoName: String
+    let instructions: String
 
 }
 
@@ -24,10 +25,6 @@ extension Recipe {
 
     var photo: UIImage {
         UIImage(named: photoName)!
-    }
-
-    var menuID: NSString {
-        NSString(string: id)
     }
 
 }

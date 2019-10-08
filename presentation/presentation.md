@@ -13,6 +13,19 @@ footer-style: alignment(right), text-scale(1.5)
 
 ---
 
+[.background-color: #fafafa]
+[.footer-style: color(#333)]
+
+![inline](img/example.png)
+
+---
+
+> ...use context menus to give people access to additional functionality related to onscreen items without cluttering the interface.
+
+\- Human Interface Guidelines
+
+---
+
 [.background-color: #18202a]
 
 ![inline](img/poll.png)
@@ -25,75 +38,13 @@ footer-style: alignment(right), text-scale(1.5)
 
 ---
 
-> ...use context menus to give people access to additional functionality related to onscreen items without cluttering the interface.
-
-\- Human Interface Guidelines
-
----
-
-[.background-color: #fafafa]
-[.footer-style: color(#333)]
-
-![inline](img/example.png)
-
----
-
 # **Let’s do it!**
 
 ---
 
-# Conform to a Protocol
-
-```swift
-
-extension MapViewController: UIContextMenuInteractionDelegate {
-    func contextMenuInteraction(
-    	_ interaction: UIContextMenuInteraction, 
-    	configurationForMenuAtLocation location: CGPoint) 
-    	-> UIContextMenuConfiguration? 
-    {
-    	return nil
-    }
-}
-
-```
-
----
-
-# Create an Interaction
-
-```swift
-
-let interaction = UIContextMenuInteraction(delegate: self)
-view.addInteraction(interaction)
-
-```
-
----
-
-# Return a Configuration
-
-```swift
-
-let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
-
-    let favorite = UIAction(title: "Favorite", image: UIImage(systemName: "heart")) { _ in
-        print("Favorite")
-    }
-
-    let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
-        print("Share")
-    }
-
-    return UIMenu(title: "", image: nil, identifier: nil, options: [], children: [favorite, share])
-
-}
-
-```
-
----
-
 # **Catalyst**
+
+^ Would love to live code this, but IT hasn’t approved Catalina
 
 ---
 

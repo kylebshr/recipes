@@ -19,7 +19,7 @@ class RecipesViewController: UITableViewController, UITableViewDragDelegate {
 
         super.init(style: .plain)
 
-        tabBarItem = UITabBarItem(title: "Recipes", image: UIImage(systemName: "book"), selectedImage: nil)
+        tabBarItem = UITabBarItem(title: "Recipes", image: UIImage(symbol: .book), selectedImage: nil)
 
     }
 
@@ -143,17 +143,17 @@ extension RecipesViewController {
 
         }, actionProvider: { _ in
 
-            let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+            let share = UIAction(title: "Share", image: UIImage(symbol: .share)) { _ in
                 print("Share \(recipe)")
             }
 
             let shareMenu = UIMenu(title: "", options: .displayInline, children: [share])
 
-            let saveIngredients = UIAction(title: "Add to Shopping List", image: UIImage(systemName: "plus")) { _ in
+            let saveIngredients = UIAction(title: "Add to Shopping List", image: UIImage(symbol: .plus)) { _ in
                 print("Add ingredients")
             }
 
-            let dislike = UIAction(title: "Dislike", image: UIImage(systemName: "hand.thumbsdown"), attributes: .destructive) { _ in
+            let dislike = UIAction(title: "Dislike", image: UIImage(symbol: .thumbsDown), attributes: .destructive) { _ in
                 print("Dislike")
             }
 
@@ -164,7 +164,7 @@ extension RecipesViewController {
             }
 
             let saveMenuStyle: UIMenu.Options = listActions.count > 2 ? [] : .displayInline
-            let saveMenu = UIMenu(title: "Save Recipe...", image: UIImage(systemName: "heart"), options: saveMenuStyle, children: listActions)
+            let saveMenu = UIMenu(title: "Save Recipe...", image: UIImage(symbol: .heart), options: saveMenuStyle, children: listActions)
 
             let menu = UIMenu(title: "", children: [saveIngredients, dislike, saveMenu, shareMenu])
             return menu

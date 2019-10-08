@@ -154,9 +154,11 @@ private func makePhotoPreview(
 
 ### (and don't use index paths as identifiers!)
 
+^ and, that's all it really takes! There's no excuse not at add these where appropiate
+
 ---
 
-# _**Polish**_
+# ✨ _**Polish**_ ✨
 
 ---
 

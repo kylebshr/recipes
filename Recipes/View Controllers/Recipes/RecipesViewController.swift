@@ -33,6 +33,7 @@ class RecipesViewController: UITableViewController, UITableViewDragDelegate {
 
         navigationItem.title = "Suggested Recipes"
 
+        tableView.dragInteractionEnabled = true
         tableView.dragDelegate = self
         tableView.estimatedRowHeight = 100
         tableView.register(RecipeCell.self, forCellReuseIdentifier: "identifier")

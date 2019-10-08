@@ -19,7 +19,7 @@ class RecipesViewController: UITableViewController, UITableViewDragDelegate {
 
         super.init(style: .plain)
 
-        tabBarItem = UITabBarItem(title: "Recipes", image: UIImage(systemName: "book"), selectedImage: nil)
+        tabBarItem = UITabBarItem(title: "Recipes", image: UIImage(symbol: .book), selectedImage: nil)
 
     }
 
@@ -128,15 +128,15 @@ extension RecipesViewController {
 
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { _ in
 
-            let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+            let share = UIAction(title: "Share", image: UIImage(symbol: .share)) { _ in
                 print("Share \(recipe)")
             }
 
-            let saveIngredients = UIAction(title: "Add to Shopping List", image: UIImage(systemName: "plus")) { _ in
+            let saveIngredients = UIAction(title: "Add to Shopping List", image: UIImage(symbol: .plus)) { _ in
                 print("Add ingredients")
             }
 
-            let dislike = UIAction(title: "Dislike", image: UIImage(systemName: "hand.thumbsdown"), attributes: .destructive) { _ in
+            let dislike = UIAction(title: "Dislike", image: UIImage(symbol: .thumbsDown), attributes: .destructive) { _ in
                 print("Dislike")
             }
 

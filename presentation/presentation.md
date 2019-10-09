@@ -7,9 +7,13 @@ footer-style: alignment(right), text-scale(1.5)
 # Context Menus
 ## **From basics to polish**
 
-^ Welcome everyone! Thank you so much for coming. First time in the office in 6 months, feels great to be back. Skiing accident, broke my back, story for another time.
+^ Welcome everyone! Thank you so much for coming. I’m an iOS engineer on Driver Labs,
 
-^ Here to talk about context menus!
+^ First time in the office in 6 months, feels great to be back. Skiing accident, broke my back, story for another time.
+
+^ Gave me lots of time to explore these APIs, made a comprehensive blog post
+
+^ so let’s talk about context menus
 
 ---
 
